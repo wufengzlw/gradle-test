@@ -1,0 +1,25 @@
+plugins {
+    id 'pl.allegro.tech.build.axion-release' version '1.13.2'
+}
+
+scmVersion {
+    tag {
+        initialVersion = { config, position -> '1.0.0' }
+    }
+    checks {
+        uncommittedChanges = false
+        aheadOfRemote = false
+        snapshotDependencies = false
+    }
+    versionIncrementer 'incrementMinor'
+    branchVersionIncrementer = [
+            'major/.*' : 'incrementMajor',
+            'hotfix/.*': 'incrementPatch',
+            'bugfix/.*': 'incrementPatch'
+    ]
+    branchVersionCreator = [
+            'feature/.*': 'versionWithBranch'
+    ]
+}
+
+project.version = scmVersion.version
