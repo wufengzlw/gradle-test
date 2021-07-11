@@ -1,0 +1,34 @@
+name: release
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+    inputs:
+      forceVersion:
+        description: 'Force version'
+        required: false
+        default: ''
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout head
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Display current version
+        id: cvBefore
+        run: |
+          ./gradlew cV
+      - name: Release
+        run: |
+          ./gradlew release \
+          -Prelease.disableChecks
+      - name: Display current version
+        id: cvAfter
+        run: |
+          ./gradlew cV

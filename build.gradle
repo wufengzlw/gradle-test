@@ -2,6 +2,8 @@ plugins {
     id 'pl.allegro.tech.build.axion-release' version '1.13.2'
 }
 
+apply plugin:'base'
+
 scmVersion {
     tag {
         initialVersion = { config, position -> '1.0.0' }
