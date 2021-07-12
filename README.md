@@ -17,3 +17,4 @@ minor-1
 major-9
 major-10
 major-11
+major-12
