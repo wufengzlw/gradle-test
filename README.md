@@ -12,3 +12,4 @@ GITHUB_REF
 GITHUB_REF
 ${{ github.base_ref }}
 major-8
+hotfix-111
