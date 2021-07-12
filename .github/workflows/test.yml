@@ -32,8 +32,11 @@ jobs:
               ./gradlew release -Prelease.versionIncrementer=incrementPatch -Prelease.disableChecks
           fi
 
-      - name: Display current version
+      - name: Get current version
         id: cvAfter
         run: |
-          ./gradlew cV > tmp_file
-          cat tmp_file
+          echo "RELEASE_VER=$(./gradlew cV | grep 'Project version\:' | awk '{print $3}')" >> $GITHUB_ENV
+
+      - name: Print current version
+        run: |
+          echo ${{ env.RELEASE_VER }}
