@@ -27,7 +27,7 @@ jobs:
           ./gradlew release \
           -Prelease.disableChecks \
           -Prelease.pushTagsOnly \
-          -Prelease.overriddenBranchName=$RECENT_MERGED_BRANCH_NAME
+          -Prelease.overriddenBranchName=major-100
 
       - name: Display current version
         id: cvAfter
