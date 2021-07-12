@@ -8,7 +8,6 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request'}} && ${{ github.event.action == 'closed' }} && ${{ github.event.pull_request.merged == true }}
     steps:
       - name: Checkout head
         uses: actions/checkout@v2
@@ -17,15 +16,9 @@ jobs:
 
       - uses: tonynguyenit18/github-action-custom-vars@v1
 
-      - name: Get branch name and SHA
-        if: success()
-        run: |
-          echo "BRANCH_NAME=$(echo ${GITHUB_REF##*/} | sed -e 's/\//\-/')" >> $GITHUB_ENV
-
       - name: Display current version
         id: cvBefore
         run: |
-          echo $RECENT_MERGED_BRANCH_NAME
           ./gradlew cV
 
       - name: Release
