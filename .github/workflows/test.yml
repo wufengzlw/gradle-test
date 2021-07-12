@@ -32,14 +32,8 @@ jobs:
               ./gradlew release -Prelease.versionIncrementer=incrementPatch -Prelease.disableChecks
           fi
 
-#      - name: Release
-#        run: |
-#          ./gradlew release \
-#          -Prelease.disableChecks \
-#          -Prelease.pushTagsOnly \
-#          -Prelease.overriddenBranchName=major-100
-
       - name: Display current version
         id: cvAfter
         run: |
-          ./gradlew cV
+          ./gradlew cV > tmp_file
+          cat tmp_file
