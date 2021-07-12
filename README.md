@@ -10,3 +10,4 @@ major-4
 major-5
 GITHUB_REF
 GITHUB_REF
+${{ github.base_ref }}
