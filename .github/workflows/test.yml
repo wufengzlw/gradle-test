@@ -24,10 +24,20 @@ jobs:
 
       - name: Release
         run: |
-          ./gradlew release \
-          -Prelease.disableChecks \
-          -Prelease.pushTagsOnly \
-          -Prelease.overriddenBranchName=major-100
+          if [[ $RECENT_MERGED_BRANCH_NAME == major* ]]; then
+              ./gradlew release -Prelease.versionIncrementer=incrementMajor -Prelease.disableChecks
+          elif [[ $RECENT_MERGED_BRANCH_NAME == minor* ]]; then
+              ./gradlew release -Prelease.versionIncrementer=incrementMinor -Prelease.disableChecks
+          elif [[ $RECENT_MERGED_BRANCH_NAME == hotfix* ]]; then
+              ./gradlew release -Prelease.versionIncrementer=incrementPatch -Prelease.disableChecks
+          fi
+
+#      - name: Release
+#        run: |
+#          ./gradlew release \
+#          -Prelease.disableChecks \
+#          -Prelease.pushTagsOnly \
+#          -Prelease.overriddenBranchName=major-100
 
       - name: Display current version
         id: cvAfter
