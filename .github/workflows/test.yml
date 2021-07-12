@@ -26,6 +26,7 @@ jobs:
         run: |
           ./gradlew release \
           -Prelease.disableChecks \
+          -Prelease.pushTagsOnly \
           -Prelease.overriddenBranchName=$RECENT_MERGED_BRANCH_NAME
 
       - name: Display current version
