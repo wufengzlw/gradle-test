@@ -9,3 +9,4 @@ major-3
 major-4
 major-5
 GITHUB_REF
+GITHUB_REF
