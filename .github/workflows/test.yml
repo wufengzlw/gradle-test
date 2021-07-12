@@ -20,14 +20,23 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Get branch name and SHA
+        if: success()
+        run: |
+          echo "BRANCH_NAME=$(echo ${GITHUB_REF##*/} | sed -e 's/\//\-/')" >> $GITHUB_ENV
+
       - name: Display current version
         id: cvBefore
         run: |
           ./gradlew cV
+
       - name: Release
         run: |
           ./gradlew release \
           -Prelease.disableChecks
+          -Prelease.pushTagsOnly \
+          -Prelease.overriddenBranchName=${{ env.BRANCH_NAME }}
+
       - name: Display current version
         id: cvAfter
         run: |
