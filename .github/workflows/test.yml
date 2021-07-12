@@ -1,19 +1,14 @@
 name: release
 
 on:
-  push:
+  pull_request:
     branches:
       - master
-  workflow_dispatch:
-    inputs:
-      forceVersion:
-        description: 'Force version'
-        required: false
-        default: ''
 
 jobs:
   release:
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
     steps:
       - name: Checkout head
         uses: actions/checkout@v2
@@ -28,6 +23,7 @@ jobs:
       - name: Display current version
         id: cvBefore
         run: |
+          echo ${{ env.BRANCH_NAME }}
           ./gradlew cV
 
       - name: Release
