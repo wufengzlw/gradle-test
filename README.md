@@ -14,3 +14,4 @@ ${{ github.base_ref }}
 major-8
 hotfix-111
 minor-1
+major-9
