@@ -19,6 +19,7 @@ jobs:
       - name: Display current version
         id: cvBefore
         run: |
+          echo $RECENT_MERGED_BRANCH_NAME
           ./gradlew cV
 
       - name: Release
