@@ -20,3 +20,4 @@ major-11
 major-12
 major-13
 minor-10
+hotfix-100
