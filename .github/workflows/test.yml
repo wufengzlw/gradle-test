@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  release:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout head
@@ -31,6 +31,24 @@ jobs:
           elif [[ $RECENT_MERGED_BRANCH_NAME == hotfix* ]]; then
               ./gradlew release -Prelease.versionIncrementer=incrementPatch -Prelease.disableChecks
           fi
+
+      - name: Get current version
+        id: cvAfter
+        run: |
+          echo "RELEASE_VER=$(./gradlew cV | grep 'Project version\:' | awk '{print "v-"$3}')" >> $GITHUB_ENV
+
+      - name: Print current version
+        run: |
+          echo ${{ env.RELEASE_VER }}
+
+  DeployDev:
+    runs-on: ubuntu-latest
+    needs: Build
+    steps:
+      - name: Fetch all history of all tags and branches
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Get current version
         id: cvAfter
