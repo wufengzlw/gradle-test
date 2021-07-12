@@ -13,7 +13,6 @@ scmVersion {
         aheadOfRemote = false
         snapshotDependencies = false
     }
-    versionIncrementer 'incrementMinor'
     branchVersionIncrementer = [
             'major/.*' : 'incrementMajor',
             'hotfix/.*': 'incrementPatch',
