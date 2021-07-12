@@ -14,9 +14,9 @@ scmVersion {
         snapshotDependencies = false
     }
     branchVersionIncrementer = [
-            'major/.*' : 'incrementMajor',
-            'hotfix/.*': 'incrementPatch',
-            'bugfix/.*': 'incrementPatch'
+            'major.*' : 'incrementMajor',
+            'hotfix.*': 'incrementPatch',
+            'bugfix.*': 'incrementPatch'
     ]
     branchVersionCreator = [
             'feature/.*': 'versionWithBranch'
