@@ -15,6 +15,7 @@ scmVersion {
     }
     branchVersionIncrementer = [
             'major.*' : 'incrementMajor',
+            'master' : 'incrementMajor',
             'hotfix.*': 'incrementPatch',
             'bugfix.*': 'incrementPatch'
     ]
