@@ -8,3 +8,4 @@ major-2
 major-3
 major-4
 major-5
+GITHUB_REF
