@@ -23,6 +23,7 @@ jobs:
       - name: Display current version
         id: cvBefore
         run: |
+          echo $GITHUB_REF
           echo ${{ env.BRANCH_NAME }}
           ./gradlew cV
 
