@@ -11,3 +11,4 @@ major-5
 GITHUB_REF
 GITHUB_REF
 ${{ github.base_ref }}
+major-8
