@@ -33,7 +33,7 @@ jobs:
       - name: Release
         run: |
           ./gradlew release \
-          -Prelease.disableChecks
+          -Prelease.disableChecks \
           -Prelease.pushTagsOnly \
           -Prelease.overriddenBranchName=${{ env.BRANCH_NAME }}
 
