@@ -35,7 +35,7 @@ jobs:
       - name: Get current version
         id: cvAfter
         run: |
-          echo "RELEASE_VER=$(./gradlew cV | grep 'Project version\:' | awk '{print "v-"$3}')" >> $GITHUB_ENV
+          echo "RELEASE_VER=v-$(./gradlew cV -q -Prelease.quiet)" >> $GITHUB_ENV
 
       - name: Print current version
         run: |
@@ -53,7 +53,7 @@ jobs:
       - name: Get current version
         id: cvAfter
         run: |
-          echo "RELEASE_VER=$(./gradlew cV | grep 'Project version\:' | awk '{print "v-"$3}')" >> $GITHUB_ENV
+          echo "RELEASE_VER=v-$(./gradlew cV -q -Prelease.quiet)" >> $GITHUB_ENV
 
       - name: Print current version
         run: |
