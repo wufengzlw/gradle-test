@@ -18,6 +18,9 @@ jobs:
           distribution: 'adopt'
           java-version: '16'
 
+      - name: Build the package
+        run: ./gradlew clean build
+
       - name: Get version tag
         if: success()
         run: |
