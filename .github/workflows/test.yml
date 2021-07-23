@@ -66,7 +66,7 @@ jobs:
           SLACK_CHANNEL: github-action-test
           SLACK_COLOR: ${{ job.status }}
           SLACK_ICON: https://github.com/rtCamp.png?size=48
-          SLACK_MESSAGE: 'account-service is deployed to stage environment with image tag: ${{ env.RELEASE_VER }} :rocket:'
-          SLACK_TITLE: Post Title
+          SLACK_MESSAGE: 'account-service: ${{ env.RELEASE_VER }}'
+          SLACK_TITLE: STAGE Deployment
           SLACK_USERNAME: Github Action
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
