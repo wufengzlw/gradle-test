@@ -61,9 +61,10 @@ jobs:
           echo ${{ env.RELEASE_VER }}
 
       - name: Slack Notification
+        if: success()
         uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_CHANNEL: github-action-test
+          SLACK_CHANNEL: engineering-notification-dev
           SLACK_COLOR: ${{ job.status }}
           SLACK_ICON: https://github.com/rtCamp.png?size=48
           SLACK_MESSAGE: 'account-service: ${{ env.RELEASE_VER }}'
