@@ -25,11 +25,16 @@ jobs:
       - name: Release
         run: |
           if [[ $RECENT_MERGED_BRANCH_NAME == major* ]]; then
+              echo "majorrrrr"
               ./gradlew release -Prelease.versionIncrementer=incrementMajor -Prelease.disableChecks
           elif [[ $RECENT_MERGED_BRANCH_NAME == minor* ]]; then
+              echo "minorrrrr"
               ./gradlew release -Prelease.versionIncrementer=incrementMinor -Prelease.disableChecks
           elif [[ $RECENT_MERGED_BRANCH_NAME == hotfix* ]]; then
+              echo "patchhhhh"
               ./gradlew release -Prelease.versionIncrementer=incrementPatch -Prelease.disableChecks
+          else
+              echo "elseeeee"
           fi
 
       - name: Get current version
@@ -59,15 +64,3 @@ jobs:
       - name: Print current version
         run: |
           echo ${{ env.RELEASE_VER }}
-
-      - name: Slack Notification
-        if: success()
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_CHANNEL: engineering-notification-dev
-          SLACK_COLOR: ${{ job.status }}
-          SLACK_ICON: https://github.com/rtCamp.png?size=48
-          SLACK_MESSAGE: 'account-service: ${{ env.RELEASE_VER }}'
-          SLACK_TITLE: STAGE Deployment
-          SLACK_USERNAME: Github Action
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
