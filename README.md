@@ -23,3 +23,4 @@ minor-10
 hotfix-100
 eee
 101
+hotfix-101
