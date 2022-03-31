@@ -19,6 +19,7 @@ pipeline {
 
     stage('Environment setup') {
       steps{
+        sh "id"
         sh "pwd"
         sh "apt update"
         sh "apt install curl -y"
@@ -27,6 +28,7 @@ pipeline {
         sh "mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin"
         sh "mkdir $HOME/.kube"
         sh "echo $PROD_KUBE_CONFIG | base64 -d > ~/.kube/config"
+        sh "whereis kubectl"
         sh "kubectl version"
         sh "kubectl get nodes"
         sh "ls"
