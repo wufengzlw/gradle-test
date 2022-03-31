@@ -1,13 +1,32 @@
 pipeline {
   agent {
     kubernetes {
-      label 'kube-agent'  // all your pods will be named with this prefix, followed by a unique id
+      label 'kube-agent'
     }
   }
-    stages {
+
+  environment {
+      PROD-KUBE-CONFIG = credentials('prod-kube-config')
+  }
+
+  stages {
+
     stage('test') {
       steps{
         sh "echo 'aaa'"
+      }
+    }
+
+    stage('Environment setup') {
+      steps{
+        sh "curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.20.4/2021-04-12/bin/linux/arm64/kubectl"
+        sh "chmod +x ./kubectl"
+        sh "mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin"
+        sh "mkdir .kube"
+        sh "echo $PROD-KUBE-CONFIG | base64 -d > ~/.kube/config"
+        sh "kubectl version"
+        sh "kubectl get nodes"
+        sh "ls"
       }
     }
   }
