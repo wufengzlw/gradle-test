@@ -6,7 +6,7 @@ pipeline {
   }
 
   environment {
-      PROD-KUBE-CONFIG = credentials('prod-kube-config')
+      PROD_KUBE_CONFIG = credentials('prod-kube-config')
   }
 
   stages {
@@ -23,7 +23,7 @@ pipeline {
         sh "chmod +x ./kubectl"
         sh "mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin"
         sh "mkdir .kube"
-        sh "echo $PROD-KUBE-CONFIG | base64 -d > ~/.kube/config"
+        sh "echo $PROD_KUBE_CONFIG | base64 -d > ~/.kube/config"
         sh "kubectl version"
         sh "kubectl get nodes"
         sh "ls"
